@@ -10,16 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181215135948) do
+ActiveRecord::Schema.define(version: 20181216081024) do
 
   create_table "movies", force: :cascade do |t|
     t.string   "title"
     t.string   "text"
     t.string   "category"
-    t.integer  "average_rating"
+    t.float    "average_rating", default: 0.0
     t.integer  "user_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
   end
 
   create_table "user_ratings", force: :cascade do |t|
@@ -32,10 +32,19 @@ ActiveRecord::Schema.define(version: 20181215135948) do
 
   create_table "users", force: :cascade do |t|
     t.string   "email"
-    t.string   "password_digest"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.string   "reset_password_token"
+    t.string   "reset_password_sent_at"
+    t.string   "remember_created_at"
+    t.integer  "sign_in_count",          default: 0, null: false
+    t.string   "current_sign_in_at"
+    t.string   "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.string   "encrypted_password"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
 end

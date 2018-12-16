@@ -1,0 +1,7 @@
+<%= form_for movie, url: movie.new_record? ? movies_path : movie_path(id: movie) do |f| %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  <%= f.text_field :title %>
+  <%= f.text_field :text %>
+  <%= f.select :category, Movie.categories  %>
+  <%= f.submit class: 'btn btn-primary' %>
+<% end %>
