@@ -1,4 +1,4 @@
-import Vue from 'vue/dist/vue.js'
+import Vue from 'vue'
 import App from '../components/app.vue'
 import StarRating from 'vue-star-rating'
 
