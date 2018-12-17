@@ -18,7 +18,7 @@
 			  <% (5).downto(0).each do |c| %>
                 <a href="<%= "?average_rating=#{c}" %>" class="list-group-item">
                   <div class="reviews">
-                    <star-rating class="star-rating" v-model="rating" data-score="<%= c %>" v-bind:read-only="true" v-bind:star-size="30" v-bind:show-rating="false"></star-rating>
+                    <div class="star-rating" data-score=<%= c %> ></div>
                   </div>
                   <span class="float-right badge badge-light round"><%= @ratings_count[c.to_f] ? @ratings_count[c.to_f] : 0 %></span>
                 </a>

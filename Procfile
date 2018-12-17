@@ -1,2 +1,3 @@
-backend: bin/rails s
-frontend: bin/webpack-dev-server
+# Procfile
+backend: rails s -p 3000
+frontend: webpack-dev-server
