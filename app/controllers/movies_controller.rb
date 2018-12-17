@@ -1,5 +1,5 @@
 class MoviesController < ApplicationController
-  before_action :set_movie, only: [:show, :edit, :update, :destroy]
+  before_action :set_movie, only: [:show, :edit, :update, :destroy, :rate]
   before_action :authenticate_user!, :except => [:index, :show]
 
   def index
@@ -43,6 +43,14 @@ class MoviesController < ApplicationController
         flash[:notice] = "Movie couldn't be updated."
         render :edit
       end
+  end
+
+  def rate
+    @rate = UserRating.create({user: current_user, movie: @movie, rate: params[:rate]});
+    @rate.save
+    respond_to do |format|
+      format.json { render :json => @movie }
+    end
   end
 
   def destroy
