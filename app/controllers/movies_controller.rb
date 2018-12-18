@@ -28,20 +28,32 @@ class MoviesController < ApplicationController
 
     if @movie.save
       flash[:notice] = "Movie was successfully created."
-      redirect_to movies_url
+      respond_to do |format|
+        format.html { redirect_to movies_url }
+        format.json { head :no_content }
+      end
     else
       flash.now[:error] = "Movie couldn't be created."
-      render :new
+      respond_to do |format|
+        format.html { render :nds }
+        format.json { render json: @movie.errors, status: :unprocessable_entity }
+      end
     end
   end
 
   def update
     if @movie.update(movie_params)
         flash[:notice] = "Movie was successfully updated."
-        redirect_to movies_url
+        respond_to do |format|
+          format.html { redirect_to movies_url }
+          format.json { head :no_content }
+        end
       else
         flash[:notice] = "Movie couldn't be updated."
-        render :edit
+        respond_to do |format|
+          format.html { render :edit }
+          format.json { render json: @movie.errors, status: :unprocessable_entity }
+        end
       end
   end
 
@@ -56,7 +68,10 @@ class MoviesController < ApplicationController
   def destroy
     @movie.destroy
     flash[:notice] = "Movie was successfully destroyed."
-    redirect_to movies_url
+    respond_to do |format|
+      format.html { redirect_to movies_url }
+      format.json { head :no_content }
+    end
   end
 
   private
