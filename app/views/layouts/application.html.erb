@@ -26,9 +26,11 @@
     </nav>
 
     <div id="main-container" class="container">
-        <% flash.each do |name, msg| -%>
-          <%= content_tag :div, msg, class: name %>
-        <% end -%>
+        <div class="offset-3">
+            <% flash.each do |name, msg| -%>
+              <%= content_tag :div, msg, class: (name == 'alert' ? 'alert alert-danger' : 'alert alert-success') %>
+            <% end -%>
+        </div>
 
         <div class="row">
             <%= yield %>
