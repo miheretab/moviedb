@@ -2,6 +2,8 @@ class MoviesController < ApplicationController
   before_action :set_movie, only: [:show, :edit, :update, :destroy, :rate]
   before_action :authenticate_user!, :except => [:index, :show]
 
+  # GET /movies
+  # GET /movies.json
   def index
     @categories_count = Hash[Movie.group(:category).count.sort_by {|_key, value| value}.reverse]
     @ratings_count = Movie.group("Round(average_rating)").count
@@ -13,16 +15,22 @@ class MoviesController < ApplicationController
     end
   end
 
+  # GET /movies/1
+  # GET /movies/1.json
   def show
   end
 
+  # GET /movies/new
   def new
     @movie = Movie.new
   end
 
+  # GET /movies/1/edit
   def edit
   end
 
+  # POST /movies
+  # POST /movies.json
   def create
     @movie = Movie.create(movie_params)
 
@@ -41,6 +49,8 @@ class MoviesController < ApplicationController
     end
   end
 
+  # PATCH/PUT /movies/1
+  # PATCH/PUT /movies/1.json
   def update
     if @movie.update(movie_params)
         flash[:notice] = "Movie was successfully updated."
@@ -57,6 +67,7 @@ class MoviesController < ApplicationController
       end
   end
 
+  # POST /movies/1/rate.json
   def rate
     @rate = UserRating.create({user: current_user, movie: @movie, rate: params[:rate]});
     @rate.save
@@ -65,6 +76,8 @@ class MoviesController < ApplicationController
     end
   end
 
+  # DELETE /movies/1
+  # DELETE /movies/1.json
   def destroy
     @movie.destroy
     flash[:notice] = "Movie was successfully destroyed."
