@@ -13,9 +13,9 @@
 movies = Movie.create([
     { title: 'X-Men', text: 'X-Men ...', category: Movie.categories[:scientific], user:users.first },
     { title: 'Rush hour', text: 'Rush hour ...', category: Movie.categories[:action], user:users.first }
-])*/
+])
 users.each do |u|
-    next if u == users.first
-    UserRating.create({ user: u, movie: movies.first, rate: 3 });
-    UserRating.create({ user: u, movie: movies.first, rate: 4 });
-end
+    next if u == users.first*/
+    UserRating.create({ user: 2, movie: movies.first, rate: 3 });
+    UserRating.create({ user: 3, movie: movies.first, rate: 4 });
+//end
