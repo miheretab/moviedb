@@ -1,5 +1,4 @@
 import Vue from 'vue/dist/vue.js'
-import App from '../appl.vue'
 import StarRating from 'vue-star-rating'
 
 
