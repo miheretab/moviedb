@@ -67,10 +67,10 @@ class MoviesController < ApplicationController
       end
   end
 
-  # POST /movies/1/rate.json
-  def rate
-    @rate = UserRating.create({user: current_user, movie: @movie, rate: params[:rate]});
-    @rate.save
+  # POST /movies/1/do_rate.json
+  def do_rate
+    @rating = UserRating.create({user: current_user, movie: @movie, rate: params[:rate]});
+    @rating.save
     respond_to do |format|
       format.json { render :json => @movie }
     end
