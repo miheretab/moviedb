@@ -1,6 +1,6 @@
-//import Vue from 'vue'
-//import App from '../components/app.vue'
-//import StarRating from 'vue-star-rating'
+import Vue from 'vue'
+import App from '../components/app.vue'
+import StarRating from 'vue-star-rating'
 
 
 document.addEventListener('DOMContentLoaded', () => {

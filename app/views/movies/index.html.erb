@@ -66,7 +66,7 @@
             <% else %>
             <td>
                 <% if user_signed_in? %>
-                  <%= link_to 'Rate', movie_path(movie) %>
+                  <%= link_to 'Rate', movie_rate_path(movie) %>
                 <% end %>
                 <%= link_to 'Show', movie_path(movie) %>
             </td>

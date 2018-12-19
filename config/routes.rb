@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   root 'movies#index'
 
   resources :movies
+  get 'movies/:id/rate', to: 'movies#do_rate', :as => "movie_rate"
 end

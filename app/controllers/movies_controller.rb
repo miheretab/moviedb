@@ -1,5 +1,5 @@
 class MoviesController < ApplicationController
-  before_action :set_movie, only: [:show, :edit, :update, :destroy, :rate]
+  before_action :set_movie, only: [:show, :edit, :update, :destroy, :do_rate]
   before_action :authenticate_user!, :except => [:index, :show]
 
   # GET /movies
@@ -67,12 +67,24 @@ class MoviesController < ApplicationController
       end
   end
 
-  # POST /movies/1/do_rate.json
+  # GET /movies/1/rate.json
   def do_rate
-    @rating = UserRating.create({user: current_user, movie: @movie, rate: params[:rate]});
-    @rating.save
-    respond_to do |format|
-      format.json { render :json => @movie }
+    if !params[:rate] || params[:rate].to_i > 5 || params[:rate].to_i < 0
+        respond_to do |format|
+            format.json { render :json => 'please select valid rate' }
+        end
+
+    else
+
+        @rating = UserRating.where(user: current_user, movie: @movie)
+        if !@rating.exists?
+            @rating = UserRating.create({user: current_user, movie: @movie, rate: params[:rate]})
+        else
+            @rating.update({rate: params[:rate]})
+        end
+        respond_to do |format|
+          format.json { render :json => @movie }
+        end
     end
   end
 
