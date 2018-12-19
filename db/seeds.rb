@@ -5,17 +5,6 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-/*users = User.create([
-    { email: 'john@doe.com', password: 'password' },
-    { email: 'user@user.com', password: 'password' },
-    { email: 'someone@user.com', password: 'password' }
-])
-movies = Movie.create([
-    { title: 'X-Men', text: 'X-Men ...', category: Movie.categories[:scientific], user:users.first },
-    { title: 'Rush hour', text: 'Rush hour ...', category: Movie.categories[:action], user:users.first }
-])
-users.each do |u|
-    next if u == users.first*/
+
     UserRating.create({ user: 2, movie: 2, rate: 3 });
     UserRating.create({ user: 3, movie: 2, rate: 4 });
-//end
