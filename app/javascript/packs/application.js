@@ -1,6 +1,6 @@
 import Vue from 'vue'
-import App from '../components/app.vue'
-//import StarRating from 'vue-star-rating'
+//import App from '../components/app.vue'
+import StarRating from 'vue-star-rating'
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   console.log(app)*/
 
-  /*Vue.component('star-rating', StarRating);
+  Vue.component('star-rating', StarRating);
 
   var i = 0
   while(i <= 5) {
@@ -29,5 +29,5 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
     i++;
-  }*/
+  }
 })
