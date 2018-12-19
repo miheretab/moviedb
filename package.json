@@ -8,7 +8,7 @@
   "build": "vue-cli-service build",
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
-    "postinstall": "npm run build",
+    "postinstall": "yarn run build",
     "start": "node server.js",
     "unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
     "e2e": "node test/e2e/runner.js",
