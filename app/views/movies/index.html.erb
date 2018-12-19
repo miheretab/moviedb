@@ -79,5 +79,5 @@
     No Movies Found!
     <% end %>
 
-    <%= will_paginate @movies %>
+    <%= will_paginate(@movies, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer) %>
 </div>
