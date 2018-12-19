@@ -6,5 +6,5 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-    UserRating.create({ user: 2, movie: 2, rate: 3 });
-    UserRating.create({ user: 3, movie: 2, rate: 4 });
+    UserRating.create({ user: User.second, movie: Movie.first, rate: 3 });
+    UserRating.create({ user: User.third, movie: Movie.first, rate: 4 });
