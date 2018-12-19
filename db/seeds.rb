@@ -16,6 +16,6 @@ movies = Movie.create([
 ])
 users.each do |u|
     next if u == users.first*/
-    UserRating.create({ user: 2, movie: movies.first, rate: 3 });
-    UserRating.create({ user: 3, movie: movies.first, rate: 4 });
+    UserRating.create({ user: 2, movie: 2, rate: 3 });
+    UserRating.create({ user: 3, movie: 2, rate: 4 });
 //end
