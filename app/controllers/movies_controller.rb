@@ -7,7 +7,7 @@ class MoviesController < ApplicationController
   def index
     @categories_count = Hash[Movie.group(:category).count.sort_by {|_key, value| value}.reverse]
     @ratings_count = Movie.group("Round(average_rating)").count
-    @movies = Movie.search(params).paginate(:page => params[:page], :per_page => 2)
+    @movies = Movie.search(params).order(title: :desc).paginate(:page => params[:page], :per_page => 2)
 
     respond_to do |format|
       format.html
@@ -83,6 +83,7 @@ class MoviesController < ApplicationController
             @rating.update({rate: params[:rate]})
         end
         respond_to do |format|
+          @movie = Movie.find(params[:id])
           format.json { render :json => @movie }
         end
     end

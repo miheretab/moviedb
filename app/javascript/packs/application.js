@@ -1,32 +1,22 @@
 import Vue from 'vue/dist/vue.js'
 import StarRating from 'vue-star-rating'
+import VueResource from 'vue-resource'
 
 
-document.addEventListener('DOMContentLoaded', () => {
-  /*document.body.appendChild(document.createElement('app'))
-  const app = new Vue({
-    el: 'app',
-    template: '<App/>',
-    components: { App }
-  })
-
-  console.log(app)*/
+document.addEventListener('turbolinks:load', () => {
 
   Vue.component('star-rating', StarRating);
+  Vue.use(VueResource);
 
-  var i = 0
-  while(i <= 5) {
     new Vue({
-        el: 'star-rating[data-score="'+i+'"]',
+        el: '#content',
         methods: {
-            setRating: function(rating){
-              this.rating= rating;
+            setRating: function(rating, id){
+                this.rating= rating;
+                this.$http.get('/movies/'+id+'/rate.json?rate='+rating).then(response => {
+                    Turbolinks.visit(window.location.toString(), {action: 'replace'})
+                });
             }
         },
-        data: {
-            rating: i
-        }
     });
-    i++;
-  }
 })

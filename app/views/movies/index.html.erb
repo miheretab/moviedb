@@ -1,6 +1,9 @@
 <aside class="col-sm-3">
   <div class="card">
 	<article class="card-group-item">
+		<header class="card-header"><h6 class="title"><a href="<%= "?" %>">All</a></h6></header>
+    </article>
+    <article class="card-group-item">
 		<header class="card-header"><h6 class="title">Category </h6></header>
 		<div class="filter-content">
 			<div class="list-group list-group-flush">
@@ -18,7 +21,7 @@
 			  <% (5).downto(0).each do |c| %>
                 <a href="<%= "?average_rating=#{c}" %>" class="list-group-item">
                   <div class="reviews">
-                    <star-rating class="star-rating" v-model="rating" data-score="<%= c %>" v-bind:read-only="true" v-bind:star-size="30" v-bind:show-rating="false"></star-rating>
+                    <star-rating class="star-rating" v-bind:rating=<%= c.to_i %> v-bind:read-only="true" v-bind:star-size="30" v-bind:show-rating="false"></star-rating>
                   </div>
                   <span class="float-right badge badge-light round"><%= @ratings_count[c.to_f] ? @ratings_count[c.to_f] : 0 %></span>
                 </a>
@@ -29,7 +32,7 @@
   </div>
 </aside>
 
-<div id="content" class="col-md-9">
+<div class="col-md-9">
     <h1>Movies</h1>
 
     <div class="mx-sm-4 mb-3 float-right"><%= link_to 'Add Movie', new_movie_path %></div>
@@ -37,7 +40,7 @@
       <div class="form-group mx-sm-4 mb-2">
         <%= text_field_tag :search, params[:search], :class => 'form-control' %>
       </div>
-      <button type="submit" class="btn btn-primary mb-2">Search</button>
+      <button type="button" onclick="Turbolinks.visit('?search='+$('#search').val())" class="btn btn-primary mb-2">Search</button>
     <% end %>
 
     <% if !@movies.empty? %>
@@ -57,7 +60,7 @@
             <td><%= movie.title %></td>
             <td><%= movie.text %></td>
             <td><%= movie.category %></td>
-            <td><%= movie.average_rating %></td>
+            <td><star-rating class="star-rating" v-bind:rating=<%= movie.average_rating %> v-bind:read-only="true" v-bind:increment=0.1 v-bind:star-size="30" ></star-rating></td>
             <% if user_signed_in? && movie.user == current_user %>
             <td>
                 <%= link_to 'Edit', edit_movie_path(movie) %>
@@ -66,7 +69,8 @@
             <% else %>
             <td>
                 <% if user_signed_in? %>
-                  <%= link_to 'Rate', movie_rate_path(movie) %>
+                   <% userRating = UserRating.where(user: current_user, movie: movie) %>
+                  <star-rating class="star-rating" v-bind:rating=<%= (userRating.exists? ? userRating.first.rate : 0) %> @rating-selected="setRating($event, <%= movie.id %>)" v-bind:star-size="30" v-bind:show-rating="false"></star-rating>
                 <% end %>
                 <%= link_to 'Show', movie_path(movie) %>
             </td>

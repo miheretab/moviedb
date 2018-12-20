@@ -19,8 +19,10 @@
   "dependencies": {
     "@rails/webpacker": "3.5",
     "vue": "^2.5.21",
+    "vue-resource": "^1.5.1",
     "vue-router": "^3.0.1",
-    "vue-star-rating": "^1.6.1"
+    "vue-star-rating": "^1.6.1",
+    "vue-turbolinks": "^2.0.3"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
