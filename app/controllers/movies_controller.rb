@@ -7,7 +7,7 @@ class MoviesController < ApplicationController
   def index
     @categories_count = Hash[Movie.group(:category).count.sort_by {|_key, value| value}.reverse]
     @ratings_count = Movie.group("Round(average_rating)").count
-    @movies = Movie.search(params).order(title: :desc).paginate(:page => params[:page], :per_page => 2)
+    @movies = Movie.search(params).order(title: :desc).paginate(:page => params[:page], :per_page => 10)
 
     respond_to do |format|
       format.html
